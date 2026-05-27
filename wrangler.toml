@@ -1,0 +1,5 @@
+name = "flutterbuhos"
+compatibility_date = "2026-05-27"
+
+[assets]
+directory = "./build/web"
