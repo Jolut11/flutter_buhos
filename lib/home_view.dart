@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'pedidos_view.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -9,7 +10,7 @@ class HomeView extends StatelessWidget {
       decoration: BoxDecoration(color: Colors.blueGrey),
       child: Center(
         child: Container(
-          color: Colors.orange,
+          color: const Color.fromARGB(255, 255, 194, 129),
           child: Column(
             children: [
               Container(
@@ -26,46 +27,59 @@ class HomeView extends StatelessWidget {
                   ),
                 ),
               ),
-              const Text("Buhos y pasteles"),
+              const Text(
+                "Buhos y pasteles",
+                style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+              ),
               Expanded(
-                child: Container(
-                  color: Colors.red,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text("Pedidos"),
-                          Text("Insumos"),
-                          Text("Recetas"),
-                          Text("Finanzas"),
-                        ],
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    const TabBar(
+                      dividerHeight: 0,
+                      indicator: UnderlineTabIndicator(
+                        borderSide: BorderSide(width: 2.0, color: Colors.black),
+                        insets: EdgeInsets.only(
+                          bottom: 15,
+                        ), // Adjust this negative value as needed
                       ),
-                      Expanded(
-                        child: Container(
-                          padding: EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(20),
-                              topRight: Radius.circular(20),
-                            ),
-                          ),
-                          child: Column(
-                            children: [
-                              Text(
-                                'MediaQuery: ${MediaQuery.of(context).size.width}',
-                              ),
-                              Text(
-                                'PixelRatio: ${MediaQuery.of(context).devicePixelRatio}',
-                              ),
-                            ],
+                      labelColor: Color.fromARGB(255, 0, 0, 0),
+                      labelStyle: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      unselectedLabelColor: Color.fromARGB(255, 172, 114, 38),
+                      tabs: [
+                        Tab(text: "Pedidos"),
+                        Tab(text: "Insumos"),
+                        Tab(text: "Recetas"),
+                        Tab(text: "Finanzas"),
+                      ],
+                    ),
+
+                    SizedBox(height: 10),
+
+                    // 3. Expanded fills remaining height inside the Container
+                    Expanded(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(40),
+                            topRight: Radius.circular(40),
                           ),
                         ),
+                        child: TabBarView(
+                          children: [
+                            PedidosView(),
+                            PedidosView(),
+                            PedidosView(),
+                            PedidosView(),
+                          ],
+                        ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ],

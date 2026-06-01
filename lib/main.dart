@@ -55,6 +55,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: HomeView(), backgroundColor: Colors.yellow);
+    return DefaultTabController(
+      length: 4,
+      child: Scaffold(body: HomeView(), backgroundColor: Colors.yellow),
+    );
   }
 }
