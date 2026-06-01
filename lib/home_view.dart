@@ -52,8 +52,15 @@ class HomeView extends StatelessWidget {
                               topRight: Radius.circular(20),
                             ),
                           ),
-                          child: Text(
-                            'Ancho: ${MediaQuery.of(context).size.width}',
+                          child: Column(
+                            children: [
+                              Text(
+                                'MediaQuery: ${MediaQuery.of(context).size.width}',
+                              ),
+                              Text(
+                                'PixelRatio: ${MediaQuery.of(context).devicePixelRatio}',
+                              ),
+                            ],
                           ),
                         ),
                       ),
