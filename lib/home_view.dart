@@ -13,6 +13,7 @@ class HomeView extends StatelessWidget {
           color: const Color.fromARGB(255, 255, 194, 129),
           child: Column(
             children: [
+              SizedBox(height: 50),
               Container(
                 width: 200,
                 height: 200,
@@ -37,6 +38,7 @@ class HomeView extends StatelessWidget {
                   children: [
                     const TabBar(
                       dividerHeight: 0,
+                      overlayColor: WidgetStatePropertyAll(Colors.transparent),
                       indicator: UnderlineTabIndicator(
                         borderSide: BorderSide(width: 2.0, color: Colors.black),
                         insets: EdgeInsets.only(
@@ -56,8 +58,6 @@ class HomeView extends StatelessWidget {
                         Tab(text: "Finanzas"),
                       ],
                     ),
-
-                    SizedBox(height: 10),
 
                     // 3. Expanded fills remaining height inside the Container
                     Expanded(
