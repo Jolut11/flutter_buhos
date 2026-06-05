@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_buhos/main.dart';
 import 'pedidos_view.dart';
 
 class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+  final ValueChanged<MenuEnum> onMenuPressed;
+
+  const HomeView({super.key, required this.onMenuPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -71,10 +74,10 @@ class HomeView extends StatelessWidget {
                         ),
                         child: TabBarView(
                           children: [
-                            PedidosView(),
-                            PedidosView(),
-                            PedidosView(),
-                            PedidosView(),
+                            PedidosView(onMenuPressed: onMenuPressed),
+                            PedidosView(onMenuPressed: onMenuPressed),
+                            PedidosView(onMenuPressed: onMenuPressed),
+                            PedidosView(onMenuPressed: onMenuPressed),
                           ],
                         ),
                       ),

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_buhos/Menus/menu_pedidos_entregados.dart';
+import 'package:flutter_buhos/Menus/menu_pedidos_pendientes.dart';
+import 'package:flutter_buhos/Menus/menu_nuevo_pedido.dart';
 import 'home_view.dart';
 
 void main() {
@@ -39,25 +42,74 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+enum MenuEnum { nuevoPedido, pedidosPendientes, pedidosEntregados }
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
+class _MyHomePageState extends State<MyHomePage> {
+  bool mostrarPanel = false;
+  MenuEnum menuActual = MenuEnum.nuevoPedido;
+
+  void abrirMenu(MenuEnum menu) => setState(() {
+    menuActual = menu;
+    mostrarPanel = true;
+  });
+
+  Widget obtenerContenido() {
+    switch (menuActual) {
+      case MenuEnum.nuevoPedido:
+        return MenuNuevoPedido();
+
+      case MenuEnum.pedidosPendientes:
+        return MenuPedidosPendientes();
+
+      case MenuEnum.pedidosEntregados:
+        return MenuPedidosEntregados();
+
+      default:
+        return Text("Contenido no disponible");
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 4,
-      child: Scaffold(body: HomeView(), backgroundColor: Colors.yellow),
+      child: Scaffold(
+        body: Stack(
+          children: [
+            HomeView(onMenuPressed: abrirMenu),
+
+            // Fondo oscuro opcional
+            if (mostrarPanel)
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    mostrarPanel = false;
+                  });
+                },
+                child: Container(color: Colors.black38),
+              ),
+
+            // Panel deslizante
+            AnimatedPositioned(
+              duration: Duration(milliseconds: 300),
+              curve: Curves.easeOut,
+              left: 0,
+              right: 0,
+              top: mostrarPanel ? 40 : MediaQuery.of(context).size.height,
+              bottom: 0,
+              child: Container(
+                height: 450,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
+                  boxShadow: [BoxShadow(blurRadius: 15, color: Colors.black26)],
+                ),
+                child: obtenerContenido(),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
