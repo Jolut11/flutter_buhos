@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_buhos/Menus/menu_pedidos_entregados.dart';
-import 'package:flutter_buhos/Menus/menu_pedidos_pendientes.dart';
-import 'package:flutter_buhos/Menus/menu_nuevo_pedido.dart';
+import 'package:flutter_buhos/Pedidos/Menus_Pedidos/menu_pedidos_entregados.dart';
+import 'package:flutter_buhos/Pedidos/Menus_Pedidos/menu_pedidos_pendientes.dart';
+import 'package:flutter_buhos/Pedidos/Menus_Pedidos/menu_nuevo_pedido.dart';
 import 'home_view.dart';
 
 void main() {

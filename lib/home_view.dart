@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_buhos/Finanzas/finanzas_view.dart';
+import 'package:flutter_buhos/Insumos/insumos_view.dart';
+import 'package:flutter_buhos/Recetas/recetas_view.dart';
 import 'package:flutter_buhos/main.dart';
-import 'pedidos_view.dart';
+import 'Pedidos/pedidos_view.dart';
 
 class HomeView extends StatelessWidget {
   final ValueChanged<MenuEnum> onMenuPressed;
@@ -75,9 +78,9 @@ class HomeView extends StatelessWidget {
                         child: TabBarView(
                           children: [
                             PedidosView(onMenuPressed: onMenuPressed),
-                            PedidosView(onMenuPressed: onMenuPressed),
-                            PedidosView(onMenuPressed: onMenuPressed),
-                            PedidosView(onMenuPressed: onMenuPressed),
+                            InsumosView(),
+                            RecetasView(),
+                            FinanzasView(),
                           ],
                         ),
                       ),
